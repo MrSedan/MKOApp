@@ -52,6 +52,26 @@ class MainActivity : AppCompatActivity() {
         val em = getText()
         if(em!==null) email.setText(em)
         Log.d("Aboba","Created")
+        val main = findViewById<ConstraintLayout>(R.id.main).also {
+            it.setOnTouchListener(object : OnSwipeTouchListener(this@MainActivity){
+                override fun onSwipeLeft() {
+                    super.onSwipeLeft()
+                    Log.d("Aboba","Swipe left")
+                }
+                override fun onSwipeRight() {
+                    super.onSwipeRight()
+                    Log.d("Aboba","Swipe right")
+                }
+                override fun onSwipeUp() {
+                    super.onSwipeUp()
+                    Log.d("Aboba","Swipe up")
+                }
+                override fun onSwipeDown() {
+                    super.onSwipeDown()
+                    Log.d("Aboba","Swipe down")
+                }
+            })
+        }
         but.setOnClickListener {
             /*val url = "http://mskko2021.mad.hakta.pro/api/quotes"
 
@@ -71,26 +91,7 @@ class MainActivity : AppCompatActivity() {
             val jsonBody = JSONObject()
 
             val pass = findViewById<EditText>(R.id.passField)
-            val main = findViewById<ConstraintLayout>(R.id.main).also {
-                it.setOnTouchListener(object : OnSwipeTouchListener(this@MainActivity){
-                    override fun onSwipeLeft() {
-                        super.onSwipeLeft()
-                        Log.d("Aboba","Swipe right")
-                    }
-                    override fun onSwipeRight() {
-                        super.onSwipeRight()
-                        Log.d("Aboba","Swipe right")
-                    }
-                    override fun onSwipeUp() {
-                        super.onSwipeUp()
-                        Log.d("Aboba","Swipe right")
-                    }
-                    override fun onSwipeDown() {
-                        super.onSwipeDown()
-                        Log.d("Aboba","Swipe right")
-                    }
-                })
-            }
+
             if (email.text.contains('@') && pass.length()>0) {
                 jsonBody.put("email", email.text)
                 jsonBody.put("password", pass.text)

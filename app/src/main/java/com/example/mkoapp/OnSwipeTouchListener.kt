@@ -27,6 +27,7 @@ internal open class OnSwipeTouchListener (c: Context?): View.OnTouchListener {
         }
 
         override fun onDoubleTap(e: MotionEvent): Boolean {
+            Log.d("Aboba","test")
             onDoubleClick()
             return super.onDoubleTap(e)
         }
