@@ -10,8 +10,8 @@ import java.net.URL
 
 
 class ProfileActivity : AppCompatActivity() {
-    val av = findViewById<ImageView>(R.id.avatarImage)
     private fun drawAvatar(url: String?){
+        val av = findViewById<ImageView>(R.id.avatarImage)
         if (url!==null){
             Glide.with(this)
                 .load(url)
