@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
@@ -14,7 +15,7 @@ class OnBoardingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_on_boarding)
-        findViewById<Button>(R.id.loginButton).setOnClickListener {
+        findViewById<ImageButton>(R.id.loginButton).setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }

@@ -4,29 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".OnBoardingActivity">
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="223dp"
-        android:layout_height="47dp"
-        android:text="Войти в аккаунт"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <View
+        android:id="@+id/logo"
+        android:layout_width="191dp"
+        android:layout_height="199dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/ic_logo"
+        android:elevation="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.888" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/privet"
+        android:layout_width="131dp"
+        android:layout_height="46dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="411dp"
+        android:gravity="center_horizontal|top"
+        android:lineHeight="46.27dp"
+        android:text="ПРИВЕТ"
+        android:textAppearance="@style/some_id"
+        android:textFontWeight="700"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/privet_text"
+        android:layout_width="232dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="457dp"
+        android:gravity="center_horizontal|top"
+        android:lineHeight="24dp"
+        android:text="Наслаждайся отборочными.\nБудь внимателен.
+Делай хорошо."
+        android:textAppearance="@style/some_id"
+        android:textFontWeight="500"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/registerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Регистрация"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="336dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="703dp"
+        android:text="Еще нет аккаунта? Зарегистрируйтесь"
+        android:textAppearance="@style/some_id"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/loginButton"
+        android:layout_width="318dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="624dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/login_button_design" />
 </androidx.constraintlayout.widget.ConstraintLayout>

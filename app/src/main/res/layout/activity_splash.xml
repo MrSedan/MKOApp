@@ -4,14 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity">
+    tools:context=".SplashActivity"
+    android:background="@drawable/background">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="This is Splash"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <View
+        android:id="@+id/logo"
+        android:layout_width="202dp"
+        android:layout_height="213dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/ic_logo"
+        android:elevation="120dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

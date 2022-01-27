@@ -5,10 +5,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
@@ -30,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mSettings = getSharedPreferences("mysettings", MODE_PRIVATE);
         setContentView(R.layout.activity_login)
-        val but: Button = findViewById(R.id.button)
+        val but: ImageButton = findViewById(R.id.signInButton)
         val que = Volley.newRequestQueue(this)
         val email = findViewById<EditText>(R.id.emailField)
         val em = getText("email")

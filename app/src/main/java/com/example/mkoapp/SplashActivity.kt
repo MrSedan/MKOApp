@@ -21,6 +21,7 @@ class SplashActivity : AppCompatActivity() {
     private fun goMain(){
         val intent = Intent(this, OnBoardingActivity::class.java)
         startActivity(intent)
+        finish()
     }
     private fun tryLogin(){
         val email = getText("email")
@@ -38,6 +39,7 @@ class SplashActivity : AppCompatActivity() {
                 intent.putExtra("token", s)
                 intent.putExtra("avatar", avatar)
                 startActivity(intent)
+                finish()
             },{
                 goMain()
             })
