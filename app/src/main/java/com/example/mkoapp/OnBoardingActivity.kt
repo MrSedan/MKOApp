@@ -18,6 +18,7 @@ class OnBoardingActivity : AppCompatActivity() {
         findViewById<ImageButton>(R.id.loginButton).setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
         findViewById<TextView>(R.id.registerText).setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)

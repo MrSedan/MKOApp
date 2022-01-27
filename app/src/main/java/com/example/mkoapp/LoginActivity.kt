@@ -31,6 +31,12 @@ class LoginActivity : AppCompatActivity() {
         val que = Volley.newRequestQueue(this)
         val email = findViewById<EditText>(R.id.emailField)
         val em = getText("email")
+        findViewById<TextView>(R.id.register).also {
+            it.setOnClickListener {
+                val intent = Intent(this, RegisterActivity::class.java)
+                startActivity(intent)
+            }
+        }
         if(em!==null) email.setText(em)
         Log.d("Aboba","Created")
         findViewById<ConstraintLayout>(R.id.main).also {
@@ -75,6 +81,7 @@ class LoginActivity : AppCompatActivity() {
                         intent.putExtra("token", s)
                         intent.putExtra("avatar", avatar)
                         startActivity(intent)
+                        finish()
                     },
                     { error ->
                         if (error.networkResponse.statusCode == 470 ){
