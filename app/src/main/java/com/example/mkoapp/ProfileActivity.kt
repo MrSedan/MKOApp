@@ -1,5 +1,6 @@
 package com.example.mkoapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -28,5 +29,11 @@ class ProfileActivity : AppCompatActivity() {
         val avurl = intent.getStringExtra("avatar")
         drawAvatar(avurl)
         "This is your token: $s".also { tokenStr.text = it }
+        val avatar = findViewById<ImageView>(R.id.avatarImage)
+        avatar.setOnClickListener {
+            val intent = Intent(this, PicturesActivity::class.java)
+            intent.putExtra("avatar",avurl)
+            startActivity(intent)
+        }
     }
 }

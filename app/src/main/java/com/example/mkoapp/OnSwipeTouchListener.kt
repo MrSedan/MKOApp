@@ -82,7 +82,7 @@ internal open class OnSwipeTouchListener (c: Context?): View.OnTouchListener {
     open fun onSwipeDown() {}
     private fun onClick() {}
     private fun onDoubleClick() {}
-    private fun onLongClick() {}
+    open fun onLongClick() {}
 
     init {
         gestureDetector = GestureDetector(c, GestureListener())
