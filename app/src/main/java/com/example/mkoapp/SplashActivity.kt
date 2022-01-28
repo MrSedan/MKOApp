@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import kotlin.concurrent.schedule
 import android.os.Bundle
-import android.os.Handler
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -21,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
     private fun goMain(){
         val intent = Intent(this, OnBoardingActivity::class.java)
         startActivity(intent)
-        finish()
+        finishAffinity()
     }
     private fun tryLogin(){
         val email = getText("email")
@@ -35,11 +34,11 @@ class SplashActivity : AppCompatActivity() {
             { response ->
                 val s = response.get("token").toString()
                 val avatar = response.get("avatar").toString()
-                val intent = Intent(this, ProfileActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("token", s)
                 intent.putExtra("avatar", avatar)
                 startActivity(intent)
-                finish()
+                finishAffinity()
             },{
                 goMain()
             })

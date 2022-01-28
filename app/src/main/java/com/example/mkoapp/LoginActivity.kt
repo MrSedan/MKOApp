@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -39,31 +38,6 @@ class LoginActivity : AppCompatActivity() {
         }
         if(em!==null) email.setText(em)
         Log.d("Aboba","Created")
-        findViewById<ConstraintLayout>(R.id.main).also {
-            it.setOnTouchListener(object : OnSwipeTouchListener(this@LoginActivity){
-                override fun onSwipeLeft() {
-                    super.onSwipeLeft()
-                    Log.d("Aboba","Swipe left")
-                }
-                override fun onSwipeRight() {
-                    super.onSwipeRight()
-                    Log.d("Aboba","Swipe right")
-                }
-                override fun onSwipeUp() {
-                    super.onSwipeUp()
-                    Log.d("Aboba","Swipe up")
-                }
-                override fun onSwipeDown() {
-                    super.onSwipeDown()
-                    Log.d("Aboba","Swipe down")
-                }
-
-                override fun onLongClick() {
-                    super.onLongClick()
-                    Toast.makeText(applicationContext,"Long click",Toast.LENGTH_SHORT).show()
-                }
-            })
-        }
         but.setOnClickListener {
             val url = "http://mskko2021.mad.hakta.pro/api/user/login"
             val jsonBody = JSONObject()
@@ -75,24 +49,23 @@ class LoginActivity : AppCompatActivity() {
                     { response ->
                         val s = response.get("token").toString()
                         val avatar = response.get("avatar").toString()
-                        val intent = Intent(this, ProfileActivity::class.java)
+                        val intent = Intent(this, MainActivity::class.java)
                         setText("email",response.getString("email"))
                         setText("pass",pass.text.toString())
+                        setText("name",response.getString("nickName"))
                         intent.putExtra("token", s)
                         intent.putExtra("avatar", avatar)
                         startActivity(intent)
-                        finish()
+                        finishAffinity()
                     },
                     { error ->
                         if (error.networkResponse.statusCode == 470 ){
-                            val err = findViewById<TextView>(R.id.errField)
-                            "Incorrect email or password!".also { err.text = it }
+                            Toast.makeText(this,"Incorrect email or password!",Toast.LENGTH_SHORT).show()
                         }else Log.e("Aboba", error.toString())
                     })
                 que.add(strReq)
             } else {
-                val err = findViewById<TextView>(R.id.errField)
-                "Type email and password, please!".also { err.text = it }
+                Toast.makeText(this, "Type email and password, please!",Toast.LENGTH_SHORT).show()
             }
         }
 

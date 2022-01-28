@@ -1,18 +1,22 @@
 package com.example.mkoapp
 
+import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
-import java.io.InputStream
-import java.net.URL
-
 
 class ProfileActivity : AppCompatActivity() {
+    lateinit var mSetteings: SharedPreferences
+    private val REQUEST_CODE = 100
     private fun drawAvatar(url: String?){
-        val av = findViewById<ImageView>(R.id.avatarImage)
+        val av = findViewById<ImageView>(R.id.avatarImgPic)
         if (url!==null){
             Glide.with(this)
                 .load(url)
@@ -20,20 +24,65 @@ class ProfileActivity : AppCompatActivity() {
         } else {
             av.setImageResource(R.drawable.ic_launcher_background)
         }
+        av.clipToOutline = true
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
+            val pic = ImageView(this)
+            val layout = findViewById<ConstraintLayout>(R.id.pictureLayout)
+            val layoutParams = ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+            )
+            pic.setImageURI(data?.data)
+            layout.addView(pic,layoutParams)
+        }
+
+    }
+    private fun openGalleryForImage(){
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent,REQUEST_CODE)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mSetteings = getSharedPreferences("mysettings", MODE_PRIVATE)
         setContentView(R.layout.activity_profile)
-        val tokenStr = findViewById<TextView>(R.id.tokenStr)
-        val s = intent.getStringExtra("token")
         val avurl = intent.getStringExtra("avatar")
         drawAvatar(avurl)
-        "This is your token: $s".also { tokenStr.text = it }
-        val avatar = findViewById<ImageView>(R.id.avatarImage)
-        avatar.setOnClickListener {
-            val intent = Intent(this, PicturesActivity::class.java)
-            intent.putExtra("avatar",avurl)
-            startActivity(intent)
+        val addPictureButton = findViewById<Button>(R.id.addPictureButton)
+        addPictureButton.setOnClickListener {
+            openGalleryForImage()
+        }
+        findViewById<View>(R.id.home).also {
+            it.setOnClickListener {
+                startActivity(Intent(this,MainActivity::class.java))
+            }
+        }
+        findViewById<View>(R.id.musicButton).also {
+            it.setOnClickListener {
+                startActivity(Intent(this, MusicActivity::class.java))
+            }
+        }
+        findViewById<View>(R.id.hamburger).also {
+            it.setOnClickListener {
+                startActivity(Intent(this,MenuActivity::class.java))
+            }
+        }
+        findViewById<TextView>(R.id.exit).also {
+            it.setOnClickListener {
+                val ed = mSetteings.edit()
+                ed.putString("pass","")
+                ed.apply()
+                startActivity(Intent(this,OnBoardingActivity::class.java))
+                finishAffinity()
+            }
+        }
+        findViewById<TextView>(R.id.name).also {
+            val name = mSetteings.getString("name","")
+            it.text = name
         }
     }
 }
