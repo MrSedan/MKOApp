@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
 import com.bumptech.glide.Glide
+import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,14 +24,18 @@ class MainActivity : AppCompatActivity() {
         }
         av.clipToOutline = true
     }
+    private fun showFeelings(){
+        val url = "https://mskko2021.mad.hakta.pro/api/feelings"
+        val sF = JsonObjectRequest(Request.Method.GET,url,null,
+            {response ->
+
+            },{})
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val tokenStr = findViewById<TextView>(R.id.tokenStr)
-        val s = intent.getStringExtra("token")
         val avurl = intent.getStringExtra("avatar")
         drawAvatar(avurl)
-        "This is your token: $s".also { tokenStr.text = it }
         val avatar = findViewById<ImageView>(R.id.avatarImage)
         avatar.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
