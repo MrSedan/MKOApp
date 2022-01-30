@@ -33,21 +33,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun sortJsonArrayByKey(arr: JSONArray): JSONArray{
-        val sortedArr = JSONArray()
         val jsonValues =  ArrayList<JSONObject>()
         for(i in 0 until arr.length()){
             jsonValues.add(arr.getJSONObject(i))
         }
-        Collections.sort(jsonValues,object: Comparator<JSONObject>(){
-
-        })
+        jsonValues.sortWith(compareBy { it.getInt("position") })
+        return JSONArray(jsonValues)
     }
     private fun showFeelings(){
         val que = Volley.newRequestQueue(this)
         val url = "http://mskko2021.mad.hakta.pro/api/feelings"
         val sF = JsonObjectRequest(Request.Method.GET,url,null,
             {response ->
-                val feel = response.getJSONArray("data")
+                val feel = sortJsonArrayByKey(response.getJSONArray("data"))
                 val container = findViewById<LinearLayout>(R.id.container)
                 for(i in 0 until feel.length()) {
                     val item = feel.getJSONObject(i)
@@ -62,6 +60,30 @@ class MainActivity : AppCompatActivity() {
                     container.addView(view)
                 }
             },{ error ->
+                Log.e("Aboba",error.toString())
+            })
+        que.add(sF)
+    }
+    private fun showQuotes(){
+        val que = Volley.newRequestQueue(this)
+        val url = "http://mskko2021.mad.hakta.pro/api/quotes"
+        val sF = JsonObjectRequest(Request.Method.GET,url,null,
+            { response ->
+                val quotes = response.getJSONArray("data")
+                val container = findViewById<LinearLayout>(R.id.quotesContainer)
+                for(i in 0 until quotes.length()){
+                    val item = quotes.getJSONObject(i)
+                    val imgUrl = item.getString("image")
+                    val view = layoutInflater.inflate(R.layout.quote_card,null,false)
+                    val viewPic = view.findViewById<ImageView>(R.id.quoteImage)
+                    view.findViewById<TextView>(R.id.quoteHeader).text = item.getString("title")
+                    view.findViewById<TextView>(R.id.quoteText).text = item.getString("description")
+                    Glide.with(this@MainActivity)
+                        .load(imgUrl)
+                        .into(viewPic)
+                    container.addView(view)
+                }
+            },{error ->
                 Log.e("Aboba",error.toString())
             })
         que.add(sF)
@@ -99,5 +121,6 @@ class MainActivity : AppCompatActivity() {
         val name = getSharedPreferences("mysettings", MODE_PRIVATE).getString("name","")
         "С возвращением, $name!".also { mainTitle.text = it }
         showFeelings()
+        showQuotes()
     }
 }
