@@ -11,9 +11,7 @@
         android:id="@+id/hamburger"
         android:layout_width="23dp"
         android:layout_height="18dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="75dp"
         android:background="@drawable/ic_hamburger"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,8 +21,6 @@
         android:id="@+id/name"
         android:layout_width="99dp"
         android:layout_height="48dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginTop="296dp"
         android:gravity="top"
         android:text=""
@@ -52,68 +48,41 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="138dp"
+        android:background="@drawable/circle_profile"
+        android:contentDescription="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars"
-        android:background="@drawable/circle_profile"/>
-
-    <Button
-        android:id="@+id/addPictureButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add picture"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/avatarImgPic"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.583" />
+        tools:ignore="ImageContrastCheck"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/exit"
         android:layout_width="23dp"
         android:layout_height="18dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginTop="74dp"
         android:layout_marginEnd="48dp"
+        android:clickable="true"
         android:gravity="top"
-        android:text="exit"
+        android:text="@string/exit"
         android:textAppearance="@style/exit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:clickable="true"/>
-
-    <ImageView
-        android:id="@+id/picture"
-        android:layout_width="191dp"
-        android:layout_height="119dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.163"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatarImgPic"
-        app:layout_constraintVertical_bias="0.318"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:ignore="TouchTargetSizeCheck" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="230.7dp"
         android:layout_height="25dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3">
 
         <View
             android:id="@+id/picturesButton"
             android:layout_width="19.7dp"
             android:layout_height="25dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="false"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
             android:background="@drawable/ic_profile_active"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -123,8 +92,6 @@
             android:id="@+id/musicButton"
             android:layout_width="21.54dp"
             android:layout_height="20dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:alpha="0.5"
             android:background="@drawable/ic_music"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -136,10 +103,6 @@
             android:id="@+id/home"
             android:layout_width="24dp"
             android:layout_height="26dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
             android:alpha="0.5"
             android:background="@drawable/ic_logo"
             android:elevation="120dp"
@@ -147,4 +110,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="409dp"
+        android:layout_height="484dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <!--TODO: Make container for user images-->
+                <Button
+                    android:layout_width="153dp"
+                    android:layout_height="115dp"
+                    android:text="+"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/picture_rect" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

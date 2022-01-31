@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name">MKOApp</string>
-    <string name="some_id">
-
-\u00D0\u0095\u00D1\u0089\u00D0\u00B5 \u00D0\u00BD\u00D0\u00B5\u00D1\u0082 \u00D0\u00B0\u00D0\u00BA\u00D0\u00BA\u00D0\u00B0\u00D1\u0083\u00D0\u00BD\u00D1\u0082\u00D0\u00B0? \u00D0\u0097\u00D0\u00B0\u00D1\u0080\u00D0\u00B5\u00D0\u00B3\u00D0\u00B8\u00D1\u0081\u00D1\u0082\u00D1\u0080\u00D0\u00B8\u00D1\u0080\u00D1\u0083\u00D0\u00B9\u00D1\u0082\u00D0\u00B5\u00D1\u0081\u00D1\u008C
-</string>
-
+    <string name="main_feel">Каким ты себя ощущаешь сегодня?</string>
+    <string name="avatar_image">Avatar</string>
+    <string name="email_hint">Email</string>
+    <string name="pass_hint">Пароль</string>
+    <string name="register">Register</string>
+    <string name="sign_in">Sign in</string>
+    <string name="menu">Тут будет меню</string>
+    <string name="music">Тут будет прослушивание</string>
+    <string name="hello">ПРИВЕТ</string>
+    <string name="hello_text">Наслаждайся отборочными.\nБудь внимателен.
+Делай хорошо.</string>
+    <string name="register_text">Еще нет аккаунта? Зарегистрируйтесь</string>
+    <string name="exit">exit</string>
+    <string name="register_there">Еще нет аккаунта? Зарегистрируйтесь</string>
 </resources>

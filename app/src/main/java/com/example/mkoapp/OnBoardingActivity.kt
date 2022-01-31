@@ -12,9 +12,8 @@ import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 
 class OnBoardingActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_on_boarding)
+    //Set onClickListeners
+    private fun clickListen(){
         findViewById<ImageButton>(R.id.loginButton).setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -24,5 +23,11 @@ class OnBoardingActivity : AppCompatActivity() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_on_boarding)
+        clickListen()
     }
 }

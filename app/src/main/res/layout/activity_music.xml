@@ -11,12 +11,10 @@
         android:id="@+id/main_title"
         android:layout_width="211dp"
         android:layout_height="82dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="82dp"
         android:layout_marginTop="365dp"
         android:gravity="top"
-        android:text="Тут будет прослушивание"
+        android:text="@string/music"
         android:textAppearance="@style/main_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -9,8 +9,6 @@
         android:id="@+id/quotesRect"
         android:layout_width="339dp"
         android:layout_height="170dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:background="@drawable/quotes_rect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,16 +19,14 @@
         android:id="@+id/quoteHeader"
         android:layout_width="wrap_content"
         android:layout_height="34dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:gravity="top"
         android:lineHeight="34dp"
-        android:text="TEst"
+        android:text=""
         android:textColor="#253334"
         android:textFontWeight="500"
-        android:textSize="25dp"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="@id/quotesRect"
         app:layout_constraintTop_toTopOf="@id/quotesRect" />
 
@@ -38,15 +34,13 @@
         android:id="@+id/quoteText"
         android:layout_width="173dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
         android:gravity="top"
         android:lineHeight="18dp"
-        android:text="Кратенькое описание блока с двумя строчками"
+        android:text=""
         android:textColor="#000000"
         android:textFontWeight="500"
-        android:textSize="15dp"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@id/quotesRect"
         app:layout_constraintTop_toBottomOf="@id/quoteHeader" />
 
@@ -60,7 +54,8 @@
         app:layout_constraintStart_toStartOf="@id/quotesRect"
         app:layout_constraintTop_toBottomOf="@+id/quoteText"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_quote_button" />
+        app:srcCompat="@drawable/ic_quote_button"
+        android:contentDescription="@string/app_name" />
 
     <ImageView
         android:id="@+id/quoteImage"
@@ -70,6 +65,7 @@
         app:layout_constraintEnd_toEndOf="@+id/quotesRect"
         app:layout_constraintStart_toEndOf="@+id/quoteText"
         app:layout_constraintTop_toTopOf="@id/quotesRect"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/app_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

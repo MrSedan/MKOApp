@@ -20,6 +20,7 @@ import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
+    //Draw user avatar
     private fun drawAvatar(url: String?){
         val av = findViewById<ImageView>(R.id.avatarImage)
         if (url!==null){
@@ -32,7 +33,8 @@ class MainActivity : AppCompatActivity() {
         av.clipToOutline = true
     }
 
-    private fun sortJsonArrayByKey(arr: JSONArray): JSONArray{
+    //Sort JSONArray
+    private fun sortJsonArray(arr: JSONArray): JSONArray{
         val jsonValues =  ArrayList<JSONObject>()
         for(i in 0 until arr.length()){
             jsonValues.add(arr.getJSONObject(i))
@@ -40,12 +42,14 @@ class MainActivity : AppCompatActivity() {
         jsonValues.sortWith(compareBy { it.getInt("position") })
         return JSONArray(jsonValues)
     }
+
+    //Show feelings from API
     private fun showFeelings(){
         val que = Volley.newRequestQueue(this)
         val url = "http://mskko2021.mad.hakta.pro/api/feelings"
         val sF = JsonObjectRequest(Request.Method.GET,url,null,
             {response ->
-                val feel = sortJsonArrayByKey(response.getJSONArray("data"))
+                val feel = sortJsonArray(response.getJSONArray("data"))
                 val container = findViewById<LinearLayout>(R.id.container)
                 for(i in 0 until feel.length()) {
                     val item = feel.getJSONObject(i)
@@ -64,6 +68,8 @@ class MainActivity : AppCompatActivity() {
             })
         que.add(sF)
     }
+
+    //Show quotes from API
     private fun showQuotes(){
         val que = Volley.newRequestQueue(this)
         val url = "http://mskko2021.mad.hakta.pro/api/quotes"
@@ -88,39 +94,40 @@ class MainActivity : AppCompatActivity() {
             })
         que.add(sF)
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+    //Set onClickListeners
+    private fun clickListen(){
         val avurl = intent.getStringExtra("avatar")
         drawAvatar(avurl)
-        val avatar = findViewById<ImageView>(R.id.avatarImage)
-        avatar.setOnClickListener {
+        findViewById<ImageView>(R.id.avatarImage).setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             intent.putExtra("avatar",avurl)
             startActivity(intent)
         }
-        findViewById<View>(R.id.hamburger).also {
-            it.setOnClickListener{
-                val intent = Intent(this, MenuActivity::class.java)
-                startActivity(intent)
-            }
+        findViewById<View>(R.id.hamburger).setOnClickListener{
+            val intent = Intent(this, MenuActivity::class.java)
+            startActivity(intent)
         }
-        findViewById<View>(R.id.musicButton).also {
-            it.setOnClickListener {
-                startActivity(Intent(this, MusicActivity::class.java))
-            }
+        findViewById<View>(R.id.musicButton).setOnClickListener {
+            startActivity(Intent(this, MusicActivity::class.java))
         }
-        findViewById<View>(R.id.picturesButton).also {
-            it.setOnClickListener {
-                val intent = Intent(this, ProfileActivity::class.java)
-                intent.putExtra("avatar",avurl)
-                startActivity(intent)
-            }
+        findViewById<View>(R.id.picturesButton).setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            intent.putExtra("avatar",avurl)
+            startActivity(intent)
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
         val mainTitle = findViewById<TextView>(R.id.main_title)
         val name = getSharedPreferences("mysettings", MODE_PRIVATE).getString("name","")
         "С возвращением, $name!".also { mainTitle.text = it }
+
         showFeelings()
         showQuotes()
+        clickListen()
     }
 }

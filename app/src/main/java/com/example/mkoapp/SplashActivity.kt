@@ -14,14 +14,20 @@ import java.util.*
 
 class SplashActivity : AppCompatActivity() {
     lateinit var mSettings: SharedPreferences
+
+    //Get string from preferences
     private fun getText(key:String): String? {
         return mSettings.getString(key,"")
     }
+
+    //Go to OnBoarding
     private fun goMain(){
         val intent = Intent(this, OnBoardingActivity::class.java)
         startActivity(intent)
         finishAffinity()
     }
+
+    //Try login and login if success, go to OnBoarding if not
     private fun tryLogin(){
         val email = getText("email")
         val que = Volley.newRequestQueue(this)
@@ -42,6 +48,8 @@ class SplashActivity : AppCompatActivity() {
             },{
                 goMain()
             })
+
+        //Timer for Splash screen
         Timer().schedule(1000){
             que.add(strReq)
             que.start()
