@@ -1,6 +1,7 @@
 package com.example.mkoapp
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +21,7 @@ import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
+    lateinit var mSettings: SharedPreferences
     //Draw user avatar
     private fun drawAvatar(url: String?){
         val av = findViewById<ImageView>(R.id.avatarImage)
@@ -32,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         }
         av.clipToOutline = true
     }
+
+    private fun getText(key:String): String? {
+        return mSettings.getString(key,"")
+    }
+
 
     //Sort JSONArray
     private fun sortJsonArray(arr: JSONArray): JSONArray{
@@ -97,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 
     //Set onClickListeners
     private fun clickListen(){
-        val avurl = intent.getStringExtra("avatar")
+        val avurl = getText("avatar")
         drawAvatar(avurl)
         findViewById<ImageView>(R.id.avatarImage).setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
@@ -120,6 +127,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mSettings = getSharedPreferences("mysettings", MODE_PRIVATE)
         setContentView(R.layout.activity_main)
 
         val mainTitle = findViewById<TextView>(R.id.main_title)

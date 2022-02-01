@@ -43,6 +43,7 @@ class LoginActivity : AppCompatActivity() {
                     setText("email",response.getString("email"))
                     setText("pass",pass.text.toString())
                     setText("name",response.getString("nickName"))
+                    setText("avatar",avatar)
                     intent.putExtra("token", s)
                     intent.putExtra("avatar", avatar)
                     startActivity(intent)
