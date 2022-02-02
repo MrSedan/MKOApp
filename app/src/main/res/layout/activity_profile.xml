@@ -7,68 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/register"
     tools:context=".ProfileActivity">
-    <View
-        android:id="@+id/hamburger"
-        android:layout_width="23dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="75dp"
-        android:background="@drawable/ic_hamburger"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="99dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="296dp"
-        android:gravity="top"
-        android:text=""
-        android:textAppearance="@style/profile_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <View
-        android:id="@+id/logo"
-        android:layout_width="43.41dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="59dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/ic_logo"
-        android:elevation="120dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/avatarImgPic"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="138dp"
-        android:background="@drawable/circle_profile"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ImageContrastCheck"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/exit"
-        android:layout_width="23dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="74dp"
-        android:layout_marginEnd="48dp"
-        android:clickable="true"
-        android:gravity="top"
-        android:text="@string/exit"
-        android:textAppearance="@style/exit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="230.7dp"
@@ -77,7 +16,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3">
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3"
+        app:layout_constraintVertical_bias="1.0">
 
         <View
             android:id="@+id/picturesButton"
@@ -114,24 +54,87 @@
     <!--TODO: Pictures-->
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="match_parent"
-        android:layout_height="484dp"
+        android:layout_width="0dp"
+        android:layout_height="835dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name">
+        app:layout_constraintTop_toTopOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <View
+                android:id="@+id/hamburger"
+                android:layout_width="23dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="75dp"
+                android:background="@drawable/ic_hamburger"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="99dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="296dp"
+                android:gravity="top"
+                android:text=""
+                android:textAppearance="@style/profile_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <View
+                android:id="@+id/logo"
+                android:layout_width="43.41dp"
+                android:layout_height="49dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="59dp"
+                android:background="@drawable/ic_logo"
+                android:elevation="120dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/avatarImgPic"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="138dp"
+                android:background="@drawable/circle_profile"
+                android:contentDescription="@string/app_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/exit"
+                android:layout_width="23dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="74dp"
+                android:layout_marginEnd="48dp"
+                android:clickable="true"
+                android:gravity="top"
+                android:text="@string/exit"
+                android:textAppearance="@style/exit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TouchTargetSizeCheck" />
+
             <GridLayout
+                android:id="@+id/pictureContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/pictureContainer"
                 android:columnCount="2"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-            </GridLayout>
+                app:layout_constraintTop_toBottomOf="@id/name" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

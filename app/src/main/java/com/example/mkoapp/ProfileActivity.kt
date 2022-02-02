@@ -72,11 +72,11 @@ class ProfileActivity : AppCompatActivity() {
             if (picString != ""){
                 picArr = JSONArray(picString)
             }
-            this.grantUriPermission(this.packageName, imageURI, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            val takeFlags: Int = Intent.FLAG_GRANT_READ_URI_PERMISSION;
+            this.grantUriPermission(this.packageName, imageURI, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            val takeFlags: Int = Intent.FLAG_GRANT_READ_URI_PERMISSION
             if (imageURI != null) {
                 this.contentResolver.takePersistableUriPermission(imageURI, takeFlags)
-            };
+            }
             val imageUriStr = imageURI.toString()
             val jsonValues = ArrayList<JSONObject>()
             for (i in 0 until picArr.length())
@@ -85,6 +85,7 @@ class ProfileActivity : AppCompatActivity() {
             jsonValues.add(JSONObject(newPicJson))
             picArr = JSONArray(jsonValues)
             setText("pictures",picArr.toString())
+
 
             //Add new button and delete previous
             var picB = layout.findViewById<ConstraintLayout>(R.id.pictureBCard)
@@ -96,6 +97,13 @@ class ProfileActivity : AppCompatActivity() {
             picBCard.setOnClickListener {
                 openGalleryForImage()
             }
+            layout.getChildAt(picArr.length()-1).setOnClickListener {
+                finish()
+                val intent = Intent(this,PhotoActivity::class.java)
+                intent.putExtra("id",picArr.length()-1).putExtra("pic",imageUriStr)
+                startActivity(intent)
+            }
+
         }
 
     }
@@ -148,6 +156,13 @@ class ProfileActivity : AppCompatActivity() {
             picture.setImageURI(Uri.parse(item.getString("uri")))
             picTime.text = item.getString("time")
             container.addView(newView)
+            container.getChildAt(i).setOnClickListener {
+                it.clipToOutline = true
+                finish()
+                val intent = Intent(this,PhotoActivity::class.java)
+                intent.putExtra("id",i).putExtra("pic",item.getString("uri"))
+                startActivity(intent)
+            }
         }
         val picB = layoutInflater.inflate(R.layout.picture_button,null)
         container.addView(picB)
@@ -171,8 +186,6 @@ class ProfileActivity : AppCompatActivity() {
             val name = mSettings.getString("name","")
             it.text = name
         }
-
-
         addPictures()
         clickListen()
     }
