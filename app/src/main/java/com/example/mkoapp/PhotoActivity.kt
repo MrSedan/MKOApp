@@ -48,6 +48,8 @@ class PhotoActivity : AppCompatActivity() {
             intent.putExtra("avatar",avurl)
             startActivity(intent)
         }
+
+        //Gesture detecting
         val listener =object: OnSwipeTouchListener(this@PhotoActivity){
             override fun onSwipeRight() {
                 super.onSwipeRight()

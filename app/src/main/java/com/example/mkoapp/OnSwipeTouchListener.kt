@@ -1,4 +1,3 @@
-//TODO: For user pictures
 package com.example.mkoapp
 
 import android.content.Context

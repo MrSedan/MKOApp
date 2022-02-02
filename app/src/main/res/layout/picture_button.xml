@@ -12,6 +12,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="153dp"
+        android:textColor="@color/white"
         android:layout_margin="20dp"
         android:id="@+id/pictureButton"
         android:layout_height="115dp"/>
